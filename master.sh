@@ -1,10 +1,10 @@
 #!/bin/bash
-#Разрешаем трафик по порту 5432
+#Р Р°Р·СЂРµС€Р°РµРј С‚СЂР°С„РёРє РїРѕ РїРѕСЂС‚Сѓ 5432
 iptables -A INPUT -p tcp --dport 5432 -j ACCEPT
 iptables -A INPUT -p tcp --sport 5432 -j ACCEPT
 iptables -A OUTPUT -p tcp --sport 5432 -j ACCEPT
 iptables -A OUTPUT -p tcp --dport 5432 -j ACCEPT
-#Установка Postgres
+#РЈСЃС‚Р°РЅРѕРІРєР° Postgres
 apt-get update
 apt-get install -y curl gnupg2 
 echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" >> /etc/apt/sources.list
@@ -12,15 +12,15 @@ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key a
 apt-get update
 apt-get install -y postgresql
 service postgresql restart
-#Создание пользователя replica для репликации
+#РЎРѕР·РґР°РЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ replica РґР»СЏ СЂРµРїР»РёРєР°С†РёРё
 psql -U postgres -c "CREATE USER replicant REPLICATION LOGIN CONNECTION LIMIT 2 ENCRYPTED PASSWORD '123456';"
-# Настраиваем PostgreSQL через конфигурационный файл
-sed -i “s/#listen_addresses = 'localhost'/ listen_addresses = '*'/” /etc/postgresql/13/main/postgresql.conf
-sed -i “s/#hot_standby = off/hot_standby = on/” /etc/postgresql/13/main/postgresql.conf
-sed -i “s/#wal_level = minimal/wal_level = replica/” /etc/postgresql/13/main/postgresql.conf
-sed -i “s/#max_wal_senders = 1/max_wal_senders = 10/” /etc/postgresql/13/main/postgresql.conf
-sed -i “s/#wal_keep_segments = 32/wal_keep_segments = 32” /etc/postgresql/13/main/postgresql.conf
-# Настраиваем подключение пользователя для репликации
+# РќР°СЃС‚СЂР°РёРІР°РµРј PostgreSQL С‡РµСЂРµР· РєРѕРЅС„РёРіСѓСЂР°С†РёРѕРЅРЅС‹Р№ С„Р°Р№Р»
+sed -i вЂњs/#listen_addresses = 'localhost'/ listen_addresses = '*'/вЂќ /etc/postgresql/13/main/postgresql.conf
+sed -i вЂњs/#hot_standby = off/hot_standby = on/вЂќ /etc/postgresql/13/main/postgresql.conf
+sed -i вЂњs/#wal_level = minimal/wal_level = replica/вЂќ /etc/postgresql/13/main/postgresql.conf
+sed -i вЂњs/#max_wal_senders = 1/max_wal_senders = 10/вЂќ /etc/postgresql/13/main/postgresql.conf
+sed -i вЂњs/#wal_keep_segments = 32/wal_keep_segments = 32вЂќ /etc/postgresql/13/main/postgresql.conf
+# РќР°СЃС‚СЂР°РёРІР°РµРј РїРѕРґРєР»СЋС‡РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РґР»СЏ СЂРµРїР»РёРєР°С†РёРё
 cp /etc/postgresql/13/main/pg_hba.conf /etc/postgresql/13/main/pg_hba{`date +%s`}.bkp
 sed  -i '/host    replication/d' /etc/postgresql/13/main/pg_hba.conf
 echo "host    replication     replica             127.0.0.1/32                 md5" | tee -a /etc/postgresql/13/main/pg_hba.conf
