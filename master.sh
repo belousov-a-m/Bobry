@@ -24,6 +24,6 @@ sed -i "s/#wal_keep_segments = 32/wal_keep_segments = 32/" /etc/postgresql/13/ma
 cp /etc/postgresql/13/main/pg_hba.conf /etc/postgresql/13/main/pg_hba{`date +%s`}.bkp
 sed  -i '/host    replication/d' /etc/postgresql/13/main/pg_hba.conf
 echo "host    replication     replica             127.0.0.1/32                 md5" | tee -a /etc/postgresql/13/main/pg_hba.conf
-echo "host    replication     replica             192.168.1.2/24                 md5" | tee -a /etc/postgresql/13/main/pg_hba.conf
+echo "host    replication     replica             192.168.20.2/24                 md5" | tee -a /etc/postgresql/13/main/pg_hba.conf
 echo "host    replication     replica             192.168.20.3/24                 md5" | tee -a /etc/postgresql/13/main/pg_hba.conf
 service postgresql restart
