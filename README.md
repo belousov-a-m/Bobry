@@ -1,7 +1,24 @@
 # Bobry
 LABA 1 postgreSQL
 
-ЗАДАНИЕ
+ВЫПОЛНЕНИЕ ЗАДАНИЯ
+
+В ходе выполнения работы были написаны программные коды для автонастройки Мастера и Реплики (Master & Slave) 
+Они были подняты согласно схеме scheme.png
+В данной реализации не предусмотрена автонастройка Арбитра (Arbitor). Он настраивается вручную, напрмер на виртуальной машине Linux
+ 
+ИСПОЛЬЗОВАННЫЕ ИСТОЧНИКИ
+
+https://docs.google.com/document/d/1mbRoLjxO-9ZaCfNAMT6rGjHRYDFjA75hP7UPx6B7Vmc/edit#        - методическое пособие 
+
+https://eax.me/postgresql-replication/
+https://habr.com/ru/post/188096/
+https://newtechaudit.ru/potokovaya-replikacziya-postgresql/
+https://losst.ru/replikatsiya-postgresql
+https://adminguide.ru/2019/04/07/postgresql-10-потоковая-репликация-с-отработкой/
+
+
+ЗАДАНИЕ ( https://docs.google.com/document/d/1mbRoLjxO-9ZaCfNAMT6rGjHRYDFjA75hP7UPx6B7Vmc/edit# )
 
 Практическое изучение отказоустойчивости, часть 1. Обработка отказа СУБД при помощи физической потоковой репликации.
 Необходимо написать программу-агента, которая создаёт отказоустойчивый кластер PostgreSQL.
@@ -44,21 +61,6 @@ pgisready - проверяет доступность базы данных
 Для того чтобы pgbench видел оба хоста их надо перечислить через запятую host=127.0.0.1,192.168.0.2 и указать target_session_attrs=read-write .
 
 
-ВЫПОЛНЕНИЕ ЗАДАНИЯ
-
-В ходе выполнения работы были написаны программные коды для автонастройки Мастера и Реплики (Master & Slave) 
-Они были подняты согласно схеме scheme.png
-В данной реализации не предусмотрена автонастройка Арбитра (Arbitor). Он настраивается вручную, напрмер на виртуальной машине Linux
- 
-ИСПОЛЬЗОВАННЫЕ ИСТОЧНИКИ
-
-https://docs.google.com/document/d/1mbRoLjxO-9ZaCfNAMT6rGjHRYDFjA75hP7UPx6B7Vmc/edit#        - методическое пособие 
-
-https://eax.me/postgresql-replication/
-https://habr.com/ru/post/188096/
-https://newtechaudit.ru/potokovaya-replikacziya-postgresql/
-https://losst.ru/replikatsiya-postgresql
-https://adminguide.ru/2019/04/07/postgresql-10-потоковая-репликация-с-отработкой/
 
 
 
