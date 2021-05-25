@@ -15,11 +15,11 @@ service postgresql restart
 #Создание пользователя replica для репликации
 psql -U postgres -c "CREATE USER replicant REPLICATION LOGIN CONNECTION LIMIT 2 ENCRYPTED PASSWORD '123456';"
 # Настраиваем PostgreSQL через конфигурационный файл
-sed -i “s/#listen_addresses = 'localhost'/ listen_addresses = '*'/” /etc/postgresql/13/main/postgresql.conf
-sed -i “s/#hot_standby = off/hot_standby = on/” /etc/postgresql/13/main/postgresql.conf
-sed -i “s/#wal_level = minimal/wal_level = replica/” /etc/postgresql/13/main/postgresql.conf
-sed -i “s/#max_wal_senders = 1/max_wal_senders = 10/” /etc/postgresql/13/main/postgresql.conf
-sed -i “s/#wal_keep_segments = 32/wal_keep_segments = 32” /etc/postgresql/13/main/postgresql.conf
+sed -i "s/#listen_addresses = 'localhost'/ listen_addresses = '*'/" /etc/postgresql/13/main/postgresql.conf
+sed -i "s/#hot_standby = off/hot_standby = on/" /etc/postgresql/13/main/postgresql.conf
+sed -i "s/#wal_level = minimal/wal_level = replica/" /etc/postgresql/13/main/postgresql.conf
+sed -i "s/#max_wal_senders = 1/max_wal_senders = 10/" /etc/postgresql/13/main/postgresql.conf
+sed -i "s/#wal_keep_segments = 32/wal_keep_segments = 32/" /etc/postgresql/13/main/postgresql.conf
 # Настраиваем подключение пользователя для репликации
 cp /etc/postgresql/13/main/pg_hba.conf /etc/postgresql/13/main/pg_hba{`date +%s`}.bkp
 sed  -i '/host    replication/d' /etc/postgresql/13/main/pg_hba.conf
