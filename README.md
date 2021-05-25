@@ -4,7 +4,9 @@ LABA 1 postgreSQL
 ВЫПОЛНЕНИЕ ЗАДАНИЯ
 
 В ходе выполнения работы были написаны программные коды для автонастройки Мастера и Реплики (Master & Slave) 
+
 Они были подняты согласно схеме scheme.png
+
 В данной реализации не предусмотрена автонастройка Арбитра (Arbitor). Он настраивается вручную, напрмер на виртуальной машине Linux
  
 ИСПОЛЬЗОВАННЫЕ ИСТОЧНИКИ
@@ -12,9 +14,13 @@ LABA 1 postgreSQL
 https://docs.google.com/document/d/1mbRoLjxO-9ZaCfNAMT6rGjHRYDFjA75hP7UPx6B7Vmc/edit#        - методическое пособие 
 
 https://eax.me/postgresql-replication/
+
 https://habr.com/ru/post/188096/
+
 https://newtechaudit.ru/potokovaya-replikacziya-postgresql/
+
 https://losst.ru/replikatsiya-postgresql
+
 https://adminguide.ru/2019/04/07/postgresql-10-потоковая-репликация-с-отработкой/
 
 
